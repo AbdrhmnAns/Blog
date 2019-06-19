@@ -42,7 +42,19 @@ public class HomeRecAdapter extends RecyclerView.Adapter<HomeRecAdapter.ItemHold
         itemHolder.itemImg.setImageResource(item.img);
         itemHolder.itemText2.setText(item.desc2);
         itemHolder.itemImg2.setImageResource(item.img2);
-    }
+
+   //  itemHolder.itemImg.setOnClickListener(new View.OnClickListener() {
+     itemHolder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    HomeRecItem homeRecItem = itemList.get(getAdapterPosition());
+                    Intent intent = new Intent(content, ArtActivity.class);
+                    context.startActivity(intent);
+                    Toast.makeText(context, "You Clicked" + item.desc, Toast.LENGTH_SHORT).show();
+                }
+            }); 
+            
+             }
 
     @Override
     public int getItemCount() {
@@ -62,15 +74,7 @@ public class HomeRecAdapter extends RecyclerView.Adapter<HomeRecAdapter.ItemHold
             itemImg2 = itemView.findViewById(R.id.imgId2);
             itemText2 = itemView.findViewById(R.id.textId2);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    HomeRecItem homeRecItem = itemList.get(getAdapterPosition());
-                    Intent intent = new Intent(v.getContext(), ArtActivity.class);
-                    v.getContext().startActivity(intent);
-                    Toast.makeText(context, "You Clicked" + homeRecItem.desc, Toast.LENGTH_SHORT).show();
-                }
-            });
+         
         }
     }
 }
